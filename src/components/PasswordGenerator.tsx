@@ -82,7 +82,7 @@ export default function PasswordGenerator() {
   ) * length);
 
   return (
-    <section className="relative bg-black px-6 py-32">
+    <section className="relative bg-black px-6 py-32" id="generator">
       {/* Subtle background glow */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-3xl" />

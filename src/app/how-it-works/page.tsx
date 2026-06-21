@@ -305,7 +305,7 @@ export default function HowItWorks() {
 
           {/* CTA to Generator */}
           <Link
-            href="/generator"
+            href="/#generator"
             className="group mt-10 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-3.5 font-semibold text-white shadow-lg shadow-blue-500/25 transition-all hover:scale-105 hover:shadow-blue-500/40"
           >
             Try it now
