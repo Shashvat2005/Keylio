@@ -2,7 +2,8 @@
 
 import { ArrowRight, ServerOff, Eye } from "lucide-react";
 import Link from "next/link";
-
+import { SITE } from "@/constants/site";
+import { FaGithub } from "react-icons/fa";
 export default function HeroCopy() {
   return (
     <section className="relative flex min-h-[calc(100vh-4rem)] items-center overflow-hidden bg-black px-6 py-20">
@@ -30,7 +31,7 @@ export default function HeroCopy() {
           </h1>
 
           <p className="mt-6 text-lg leading-relaxed text-zinc-400 sm:text-xl">
-            Stop recycling weak credentials. PasswordForge generates 
+            Stop recycling weak credentials. {SITE.name} generates 
             <span className="font-medium text-white"> cryptographically secure</span> passwords 
             resistant to brute-force, dictionary, and AI-driven cracking attempts. 
             <span className="block mt-2 text-sm text-zinc-500">
@@ -67,8 +68,7 @@ export default function HeroCopy() {
 
           <div className="flex items-start gap-4">
             <div className="rounded-lg border border-white/10 bg-white/5 p-2.5">
-              {/* <Github size={18} className="text-zinc-400" /> */}
-              GitHub Link
+              <FaGithub size={18} className="text-zinc-400" />
             </div>
             <div>
               <h3 className="font-semibold text-white">Enterprise-Grade Entropy</h3>

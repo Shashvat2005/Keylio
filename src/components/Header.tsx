@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Shield, Menu } from "lucide-react";
+import { SITE } from "@/constants/site";
 
 export default function Header() {
   return (
@@ -16,7 +17,7 @@ export default function Header() {
             <Shield size={18} className="text-white" />
           </div>
           <span className="text-xl font-bold tracking-tight text-white">
-            PasswordForge
+            {SITE.name}
           </span>
         </Link>
 
@@ -24,7 +25,7 @@ export default function Header() {
         <nav className="hidden items-center gap-8 md:flex">
           <NavLink href="/how-it-works">How It Works</NavLink>
           <NavLink href="/security">Security</NavLink>
-          <NavLink href="https://github.com" external>
+          <NavLink href={SITE.github} external>
             GitHub
           </NavLink>
           <Link
