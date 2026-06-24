@@ -5,6 +5,7 @@ import {
   Globe,
   Hash,
   ArrowRight,
+  ArrowLeft,
   RefreshCw,
   EyeOff,
   Code,
@@ -20,11 +21,21 @@ export default function HowItWorks() {
     <section className="relative overflow-hidden bg-black px-6 py-24 md:py-32">
       {/* Background Aura */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-blue-600/10 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-purple-600/10 blur-3xl" />
+        <div className="absolute left-1/2 top-0 h-125 w-125 -translate-x-1/2 rounded-full bg-blue-600/10 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-100 w-100 rounded-full bg-purple-600/10 blur-3xl" />
       </div>
 
       <div className="mx-auto max-w-4xl">
+        {/* Back button */}
+        <div className="mb-6">
+          <button
+            type="button"
+            onClick={() => history.back()}
+            className="-ml-2 inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-2 text-sm text-zinc-300 hover:bg-white/10"
+          >
+            <ArrowLeft size={16} /> Back
+          </button>
+        </div>
         {/* --- Header --- */}
         <div className="mb-16 text-center">
           <div className="mb-4 flex items-center justify-center gap-3 text-sm uppercase tracking-[0.25em] text-zinc-500">
@@ -34,7 +45,7 @@ export default function HowItWorks() {
           </div>
           <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
             Generate unique passwords{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               without storing anything
             </span>
           </h1>
@@ -47,9 +58,9 @@ export default function HowItWorks() {
         </div>
 
         {/* --- Intro Card: The Core Concept --- */}
-        <div className="mb-20 rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl md:p-10">
+        <div className="mb-20 rounded-3xl border border-white/10 bg-white/3 p-8 backdrop-blur-xl md:p-10">
           <div className="flex flex-col items-center gap-6 text-center md:flex-row md:text-left">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg shadow-blue-500/25">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-blue-500 to-purple-600 shadow-lg shadow-blue-500/25">
               <Sparkles size={28} className="text-white" />
             </div>
             <div>
@@ -87,10 +98,10 @@ export default function HowItWorks() {
 
           <div className="relative grid gap-8 md:grid-cols-3">
             {/* Vertical connecting line (desktop) */}
-            <div className="absolute left-1/2 top-12 hidden h-[calc(100%-6rem)] w-px -translate-x-1/2 bg-gradient-to-b from-blue-500/20 via-purple-500/20 to-transparent md:block" />
+            <div className="absolute left-1/2 top-12 hidden h-[calc(100%-6rem)] w-px -translate-x-1/2 bg-linear-to-b from-blue-500/20 via-purple-500/20 to-transparent md:block" />
 
             {/* Step 1 */}
-            <div className="relative rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition hover:border-white/20">
+            <div className="relative rounded-2xl border border-white/10 bg-white/3 p-6 backdrop-blur-sm transition hover:border-white/20">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10 text-lg font-bold text-blue-400">
                 1
               </div>
@@ -112,7 +123,7 @@ export default function HowItWorks() {
             </div>
 
             {/* Step 2 */}
-            <div className="relative rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition hover:border-white/20">
+            <div className="relative rounded-2xl border border-white/10 bg-white/3 p-6 backdrop-blur-sm transition hover:border-white/20">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10 text-lg font-bold text-purple-400">
                 2
               </div>
@@ -141,7 +152,7 @@ export default function HowItWorks() {
             </div>
 
             {/* Step 3 */}
-            <div className="relative rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition hover:border-white/20">
+            <div className="relative rounded-2xl border border-white/10 bg-white/3 p-6 backdrop-blur-sm transition hover:border-white/20">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10 text-lg font-bold text-emerald-400">
                 3
               </div>
@@ -177,7 +188,7 @@ export default function HowItWorks() {
         </div>
 
         {/* --- Password Rotation --- */}
-        <div className="mb-20 rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl md:p-10">
+        <div className="mb-20 rounded-3xl border border-white/10 bg-white/3 p-8 backdrop-blur-xl md:p-10">
           <div className="flex flex-col items-start gap-6 md:flex-row md:items-center">
             <div className="rounded-xl border border-white/10 bg-black/40 p-3">
               <RefreshCw size={24} className="text-blue-400" />
@@ -241,7 +252,7 @@ export default function HowItWorks() {
             ].map((item) => (
               <div
                 key={item}
-                className="flex items-center justify-center gap-2 rounded-xl border border-white/5 bg-white/[0.02] p-4 text-center text-sm font-medium text-zinc-500 backdrop-blur-sm transition hover:border-red-500/20 hover:text-red-400"
+                className="flex items-center justify-center gap-2 rounded-xl border border-white/5 bg-white/2 p-4 text-center text-sm font-medium text-zinc-500 backdrop-blur-sm transition hover:border-red-500/20 hover:text-red-400"
               >
                 <span className="text-red-500/50">✗</span> {item}
               </div>
@@ -257,7 +268,7 @@ export default function HowItWorks() {
         </div>
 
         {/* --- Open Source --- */}
-        <div className="mb-20 rounded-3xl border border-white/10 bg-gradient-to-br from-blue-500/5 to-purple-500/5 p-8 backdrop-blur-xl md:p-10">
+        <div className="mb-20 rounded-3xl border border-white/10 bg-linear-to-br from-blue-500/5 to-purple-500/5 p-8 backdrop-blur-xl md:p-10">
           <div className="flex flex-col items-center text-center md:flex-row md:text-left">
             <div className="mb-6 flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-black/40 md:mb-0 md:mr-8">
               <Code size={28} className="text-blue-400" />
@@ -297,7 +308,7 @@ export default function HowItWorks() {
           </div>
           <div className="mt-8 flex flex-col items-center justify-center gap-2 text-2xl font-bold tracking-tight text-white md:text-3xl">
             <span>One Secret.</span>
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               Unlimited Passwords.
             </span>
             <span className="text-lg font-normal text-zinc-500">Zero Storage.</span>
@@ -306,7 +317,7 @@ export default function HowItWorks() {
           {/* CTA to Generator */}
           <Link
             href="/#generator"
-            className="group mt-10 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-3.5 font-semibold text-white shadow-lg shadow-blue-500/25 transition-all hover:scale-105 hover:shadow-blue-500/40"
+            className="group mt-10 inline-flex items-center gap-2 rounded-full bg-linear-to-r from-blue-600 to-purple-600 px-8 py-3.5 font-semibold text-white shadow-lg shadow-blue-500/25 transition-all hover:scale-105 hover:shadow-blue-500/40"
           >
             Try it now
             <ArrowRight

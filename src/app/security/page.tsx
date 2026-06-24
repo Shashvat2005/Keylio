@@ -15,6 +15,7 @@ import {
   BarChart,
   ExternalLink,
   ArrowRight,
+  ArrowLeft,
 } from "lucide-react";
 import Link from "next/link";
 import { SITE } from "@/constants/site";
@@ -24,12 +25,22 @@ export default function SecurityPage() {
     <section className="relative overflow-hidden bg-black px-6 py-24 md:py-32">
       {/* Background Glows */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-blue-600/10 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-purple-600/10 blur-3xl" />
-        <div className="absolute bottom-1/3 left-0 h-[300px] w-[300px] rounded-full bg-emerald-600/5 blur-3xl" />
+        <div className="absolute left-1/2 top-0 h-125 w-125 -translate-x-1/2 rounded-full bg-blue-600/10 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-100 w-100 rounded-full bg-purple-600/10 blur-3xl" />
+        <div className="absolute bottom-1/3 left-0 h-75 w-75 rounded-full bg-emerald-600/5 blur-3xl" />
       </div>
 
       <div className="mx-auto max-w-4xl">
+        {/* Back button */}
+        <div className="mb-6">
+          <button
+            type="button"
+            onClick={() => history.back()}
+            className="-ml-2 inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-2 text-sm text-zinc-300 hover:bg-white/10"
+          >
+            <ArrowLeft size={16} /> Back
+          </button>
+        </div>
         {/* --- Hero --- */}
         <div className="mb-16 text-center">
           <div className="mb-4 flex items-center justify-center gap-3 text-sm uppercase tracking-[0.25em] text-zinc-500">
@@ -39,7 +50,7 @@ export default function SecurityPage() {
           </div>
           <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
             Security by{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               Design
             </span>
           </h1>
@@ -52,9 +63,9 @@ export default function SecurityPage() {
         </div>
 
         {/* --- Core Principle Card --- */}
-        <div className="mb-20 rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl md:p-10">
+        <div className="mb-20 rounded-3xl border border-white/10 bg-white/3 p-8 backdrop-blur-xl md:p-10">
           <div className="flex flex-col items-center gap-6 text-center md:flex-row md:text-left">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg shadow-blue-500/25">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-blue-500 to-purple-600 shadow-lg shadow-blue-500/25">
               <Shield size={28} className="text-white" />
             </div>
             <div>
@@ -80,7 +91,7 @@ export default function SecurityPage() {
           <h3 className="mb-8 text-2xl font-bold text-white">
             What happens when you click <span className="text-blue-400">Generate</span>?
           </h3>
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm">
+          <div className="rounded-2xl border border-white/10 bg-white/3 p-6 backdrop-blur-sm">
             <div className="grid gap-6 md:grid-cols-3">
               <div className="flex flex-col items-center rounded-xl border border-white/5 bg-black/30 p-5 text-center">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10">
@@ -121,7 +132,7 @@ export default function SecurityPage() {
         {/* --- What We Store & What We Collect --- */}
         <div className="mb-20 grid gap-8 md:grid-cols-2">
           {/* Store */}
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm">
+          <div className="rounded-2xl border border-white/10 bg-white/3 p-6 backdrop-blur-sm">
             <div className="mb-4 flex items-center gap-3">
               <Database size={18} className="text-red-400" />
               <h4 className="font-semibold text-white">What We Store</h4>
@@ -149,7 +160,7 @@ export default function SecurityPage() {
           </div>
 
           {/* Collect */}
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm">
+          <div className="rounded-2xl border border-white/10 bg-white/3 p-6 backdrop-blur-sm">
             <div className="mb-4 flex items-center gap-3">
               <BarChart size={18} className="text-orange-400" />
               <h4 className="font-semibold text-white">What We Collect</h4>
@@ -177,7 +188,7 @@ export default function SecurityPage() {
         </div>
 
         {/* --- Open Source Transparency --- */}
-        <div className="mb-20 rounded-3xl border border-white/10 bg-gradient-to-br from-blue-500/5 to-purple-500/5 p-8 backdrop-blur-xl md:p-10">
+        <div className="mb-20 rounded-3xl border border-white/10 bg-linear-to-br from-blue-500/5 to-purple-500/5 p-8 backdrop-blur-xl md:p-10">
           <div className="flex flex-col items-center text-center md:flex-row md:text-left">
             <div className="mb-6 flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-black/40 md:mb-0 md:mr-8">
               <Code size={28} className="text-blue-400" />
@@ -281,7 +292,7 @@ export default function SecurityPage() {
         </div>
 
         {/* --- Master Secret Advice --- */}
-        <div className="mb-20 rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl md:p-10">
+        <div className="mb-20 rounded-3xl border border-white/10 bg-white/3 p-8 backdrop-blur-xl md:p-10">
           <div className="flex flex-col items-start gap-4 md:flex-row md:items-center">
             <div className="rounded-xl border border-white/10 bg-black/40 p-3">
               <Key size={24} className="text-yellow-400" />
@@ -319,7 +330,7 @@ export default function SecurityPage() {
 
         {/* --- Cryptography & Verification --- */}
         <div className="mb-20 grid gap-8 md:grid-cols-2">
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm">
+          <div className="rounded-2xl border border-white/10 bg-white/3 p-6 backdrop-blur-sm">
             <div className="mb-3 flex items-center gap-3">
               <Lock size={18} className="text-blue-400" />
               <h4 className="font-semibold text-white">Cryptography</h4>
@@ -334,7 +345,7 @@ export default function SecurityPage() {
               publicly documented and available for inspection.
             </p>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm">
+          <div className="rounded-2xl border border-white/10 bg-white/3 p-6 backdrop-blur-sm">
             <div className="mb-3 flex items-center gap-3">
               <CheckCircle size={18} className="text-emerald-400" />
               <h4 className="font-semibold text-white">Verification</h4>
@@ -352,7 +363,7 @@ export default function SecurityPage() {
         </div>
 
         {/* --- Privacy First - Tagline --- */}
-        <div className="mb-20 rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl md:p-10">
+        <div className="mb-20 rounded-3xl border border-white/10 bg-white/3 p-8 backdrop-blur-xl md:p-10">
           <div className="text-center">
             <h3 className="text-2xl font-bold text-white">Privacy First</h3>
             <div className="mt-4 flex flex-wrap justify-center gap-4 text-sm font-medium text-zinc-300">
@@ -387,7 +398,7 @@ export default function SecurityPage() {
         <div className="text-center">
           <Link
             href="/#generator"
-            className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-3.5 font-semibold text-white shadow-lg shadow-blue-500/25 transition-all hover:scale-105 hover:shadow-blue-500/40"
+            className="group inline-flex items-center gap-2 rounded-full bg-linear-to-r from-blue-600 to-purple-600 px-8 py-3.5 font-semibold text-white shadow-lg shadow-blue-500/25 transition-all hover:scale-105 hover:shadow-blue-500/40"
           >
             Try {SITE.name} now
             <ArrowRight

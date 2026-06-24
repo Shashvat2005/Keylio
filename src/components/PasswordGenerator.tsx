@@ -31,6 +31,7 @@ export default function PasswordGenerator() {
   const [includeLowercase, setIncludeLowercase] = useState(true);
   const [includeNumbers, setIncludeNumbers] = useState(true);
   const [includeSymbols, setIncludeSymbols] = useState(true);
+  const hasCharSetSelected = includeUppercase || includeLowercase || includeNumbers || includeSymbols;
 
   // Result states
   const [generatedPassword, setGeneratedPassword] = useState("");
@@ -42,6 +43,10 @@ export default function PasswordGenerator() {
 
   // --- Placeholder generation logic (replace with your actual crypto) ---
   const handleGenerate = async () => {
+    if (!hasCharSetSelected) {
+      alert("Please select at least one character set (A-Z, a-z, 0-9, or symbols).");
+      return;
+    }
     try {
       const pwd = await generatePassword(
         masterSecret.trim(),
@@ -109,7 +114,7 @@ export default function PasswordGenerator() {
     <section className="relative bg-black px-6 py-32" id="generator">
       {/* Subtle background glow */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-3xl" />
+        <div className="absolute left-1/2 top-1/2 h-125 w-125 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-3xl" />
       </div>
 
       <div className="mx-auto max-w-5xl">
@@ -123,7 +128,7 @@ export default function PasswordGenerator() {
 
           <h2 className="text-4xl font-bold tracking-tight text-white md:text-6xl">
             One secret. <br />
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               Every password.
             </span>
           </h2>
@@ -135,7 +140,7 @@ export default function PasswordGenerator() {
         </div>
 
         {/* --- Generator Card --- */}
-        <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl md:p-10">
+        <div className="rounded-3xl border border-white/10 bg-white/3 p-8 backdrop-blur-xl md:p-10">
           {/* Row 1: Master Secret + Website */}
           <div className="mb-6 grid gap-6 md:grid-cols-2">
             <div>
@@ -170,7 +175,7 @@ export default function PasswordGenerator() {
                 type="text"
                 value={website}
                 onChange={(e) => setWebsite(e.target.value)}
-                placeholder="github.com"
+                placeholder="Enter the website"
                 className="w-full rounded-2xl border border-white/10 bg-black/40 px-5 py-4 text-white placeholder:text-zinc-600 outline-none transition-all focus:border-white/20 focus:ring-1 focus:ring-white/10"
               />
             </div>
@@ -266,12 +271,21 @@ export default function PasswordGenerator() {
                 !@#$
               </label>
             </div>
+            {!hasCharSetSelected && (
+              <p className="mt-2 text-sm text-rose-400">Please select at least one character set.</p>
+            )}
           </div>
 
           {/* --- Generate Button --- */}
           <button
             onClick={handleGenerate}
-            className="group w-full rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 py-4 font-medium text-white shadow-lg shadow-blue-500/25 transition-all hover:scale-[1.02] hover:shadow-blue-500/40 active:scale-[0.98]"
+            disabled={!hasCharSetSelected}
+            className={
+              `group w-full rounded-2xl py-4 font-medium text-white shadow-lg transition-all active:scale-[0.98] ` +
+              (hasCharSetSelected
+                ? "bg-linear-to-r from-blue-600 to-purple-600 shadow-blue-500/25 hover:scale-[1.02] hover:shadow-blue-500/40"
+                : "bg-white/5 text-zinc-400 cursor-not-allowed opacity-60")
+            }
           >
             <span className="flex items-center justify-center gap-2">
               <Shield size={18} />

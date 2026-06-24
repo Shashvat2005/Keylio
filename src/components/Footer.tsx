@@ -29,7 +29,7 @@ export default function Footer() {
           {/* Navigation Links */}
           <div className="flex flex-col items-start gap-4 md:items-end">
             <Link
-              href="/"
+              href="#generator"
               className="text-sm text-zinc-500 transition hover:text-white"
             >
               Generator
@@ -47,7 +47,7 @@ export default function Footer() {
               Security
             </Link>
             <a
-              href="https://github.com"
+              href={SITE.github}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-zinc-500 transition hover:text-white"

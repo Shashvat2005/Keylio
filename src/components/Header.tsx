@@ -13,7 +13,7 @@ export default function Header() {
           href="/"
           className="flex items-center gap-2 transition-opacity hover:opacity-80"
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg shadow-blue-500/25">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-linear-to-br from-blue-500 to-purple-600 shadow-lg shadow-blue-500/25">
             <Shield size={18} className="text-white" />
           </div>
           <span className="text-xl font-bold tracking-tight text-white">
@@ -29,10 +29,10 @@ export default function Header() {
             GitHub
           </NavLink>
           <Link
-            href="/get-started"
-            className="rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-2 text-sm font-medium text-white shadow-lg shadow-blue-500/25 transition-all hover:scale-105 hover:shadow-blue-500/40"
+            href="#generator"
+            className="rounded-full bg-linear-to-r from-blue-600 to-purple-600 px-5 py-2 text-sm font-medium text-white shadow-lg shadow-blue-500/25 transition-all hover:scale-105 hover:shadow-blue-500/40"
           >
-            Get Started
+            Try Now
           </Link>
         </nav>
 
