@@ -118,7 +118,7 @@ Create a `.env.local` file:
 NEXT_PUBLIC_APP_NAME=Keylio
 NEXT_PUBLIC_GITHUB_URL=https://github.com/Shashvat2005/Keylio
 NEXT_PUBLIC_APP_DESCRIPTION=Generate secure passwords from a single secret.
-NEXT_PUBLIC_AUTHOR=Shashvat Garg
+NEXT_PUBLIC_AUTHOR=Your Name
 NEXT_PUBLIC_APP_VERSION=1.0.0
 ```
 
