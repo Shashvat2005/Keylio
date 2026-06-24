@@ -1,36 +1,157 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Keylio
 
-## Getting Started
+Generate secure, deterministic passwords from a single secret.
 
-First, run the development server:
+Keylio is an open-source password generation tool that creates strong, unique passwords for every website without storing any credentials, vaults, or user accounts.
+
+Instead of saving passwords in a database, Keylio generates them on demand using a combination of:
+
+* Master Secret
+* Website Name
+* Version Number
+* Password Length
+* Cryptographic Algorithm
+
+The same inputs always generate the same password.
+
+---
+
+## Features
+
+* Deterministic password generation
+* Multiple cryptographic algorithms
+
+  * SHA-256
+  * SHA-512
+  * PBKDF2
+  * Argon2id
+* Custom password length
+* Configurable character sets
+* Website normalization
+* Fully client-side
+* No accounts
+* No tracking
+* No password storage
+* Open source
+
+---
+
+## Why Keylio?
+
+Traditional password managers store passwords in encrypted vaults.
+
+Keylio takes a different approach.
+
+Passwords are generated whenever needed and are never stored.
+
+Benefits include:
+
+* No password database
+* No cloud synchronization
+* No vault backups
+* No password exports
+* No stored credentials
+
+All password generation occurs locally in your browser.
+
+---
+
+## Security Model
+
+Keylio does not:
+
+* Store passwords
+* Store master secrets
+* Create user accounts
+* Maintain databases
+* Track user activity
+
+Everything runs locally on your device.
+
+---
+
+## Supported Algorithms
+
+| Algorithm | Description                       |
+| --------- | --------------------------------- |
+| SHA-256   | Fast deterministic generation     |
+| SHA-512   | Larger digest size                |
+| PBKDF2    | Key derivation function           |
+| Argon2id  | Modern password hashing algorithm |
+
+---
+
+## Local Development
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Shashvat2005/Keylio.git
+cd Keylio
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+Create a `.env.local` file:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+NEXT_PUBLIC_APP_NAME=Keylio
+NEXT_PUBLIC_GITHUB_URL=https://github.com/Shashvat2005/Keylio
+NEXT_PUBLIC_APP_DESCRIPTION=Generate secure passwords from a single secret.
+NEXT_PUBLIC_AUTHOR=Shashvat Garg
+NEXT_PUBLIC_APP_VERSION=1.0.0
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Technology Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Next.js
+* TypeScript
+* Tailwind CSS
+* Web Crypto API
+* hash-wasm
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Roadmap
+
+* Progressive Web App (PWA)
+* Mobile Application
+* Browser Extension
+* Additional cryptographic algorithms
+* Password strength analysis
+
+---
+
+## License
+
+MIT License
+
+---
+
+## Disclaimer
+
+Keylio is provided as-is.
+
+Users are responsible for choosing strong master secrets and verifying generated passwords before using them for critical accounts.
