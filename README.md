@@ -1,5 +1,11 @@
 # Keylio
 
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+![Next.js](https://img.shields.io/badge/Next.js-16-black)
+![TypeScript](https://img.shields.io/badge/TypeScript-blue)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue)](https://keylio-chi.vercel.app/)
+
+
 Generate secure, deterministic passwords from a single secret.
 
 Keylio is an open-source password generation tool that creates strong, unique passwords for every website without storing any credentials, vaults, or user accounts.
