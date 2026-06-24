@@ -13,6 +13,10 @@ import {
   Ruler,
   Layers,
 } from "lucide-react";
+import { generatePassword } from "@/lib/password";
+import type { Algorithm } from "@/lib/password";
+
+
 
 export default function PasswordGenerator() {
   // --- State for all inputs ---
@@ -20,7 +24,7 @@ export default function PasswordGenerator() {
   const [website, setWebsite] = useState("");
   const [version, setVersion] = useState(1);
   const [length, setLength] = useState(16);
-  const [algorithm, setAlgorithm] = useState("argon2id");
+  const [algorithm, setAlgorithm] = useState<Algorithm>("argon2id");
 
   // Character set toggles
   const [includeUppercase, setIncludeUppercase] = useState(true);
@@ -32,24 +36,50 @@ export default function PasswordGenerator() {
   const [generatedPassword, setGeneratedPassword] = useState("");
   const [copied, setCopied] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  // Strength shown after generation
+  const [strengthState, setStrengthState] = useState<{ label: string; color: string; text: string; width: string } | null>(null);
+  const [entropyBitsState, setEntropyBitsState] = useState<number | null>(null);
 
   // --- Placeholder generation logic (replace with your actual crypto) ---
-  const handleGenerate = () => {
-    const chars = [];
-    if (includeUppercase) chars.push("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-    if (includeLowercase) chars.push("abcdefghijklmnopqrstuvwxyz");
-    if (includeNumbers) chars.push("0123456789");
-    if (includeSymbols) chars.push("!@#$%^&*()_+-=[]{}|;:,.<>?");
+  const handleGenerate = async () => {
+    try {
+      const pwd = await generatePassword(
+        masterSecret.trim(),
+        website.trim(),
+        Number(version),
+        Number(length),
+        algorithm,
+        {
+          includeUppercase,
+          includeLowercase,
+          includeNumbers,
+          includeSymbols,
+        }
+      );
 
-    let pool = chars.join("");
-    if (!pool) pool = "abcdefghijklmnopqrstuvwxyz";
+      setGeneratedPassword(pwd);
+      setCopied(false);
 
-    let result = "";
-    for (let i = 0; i < length; i++) {
-      result += pool.charAt(Math.floor(Math.random() * pool.length));
+      // Compute and store strength + entropy only after generation
+      const s = getStrength();
+      setStrengthState(s);
+      const poolSize =
+        (includeUppercase ? 26 : 0) +
+        (includeLowercase ? 26 : 0) +
+        (includeNumbers ? 10 : 0) +
+        (includeSymbols ? 30 : 0) || 26;
+      const entropy = Math.round(Math.log2(poolSize) * length);
+      setEntropyBitsState(entropy);
+    } catch (error) {
+      console.error(error);
+
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Failed to generate password";
+
+      alert(message);
     }
-    setGeneratedPassword(result);
-    setCopied(false);
   };
 
   const copyToClipboard = () => {
@@ -73,13 +103,7 @@ export default function PasswordGenerator() {
     if (entropy >= 50) return { label: "Good", color: "bg-yellow-500", text: "text-yellow-400", width: "w-3/4" };
     return { label: "Weak", color: "bg-red-500", text: "text-red-400", width: "w-2/5" };
   };
-  const strength = getStrength();
-  const entropyBits = Math.round(Math.log2(
-    (includeUppercase ? 26 : 0) +
-    (includeLowercase ? 26 : 0) +
-    (includeNumbers ? 10 : 0) +
-    (includeSymbols ? 30 : 0)
-  ) * length);
+  
 
   return (
     <section className="relative bg-black px-6 py-32" id="generator">
@@ -190,12 +214,13 @@ export default function PasswordGenerator() {
               </label>
               <select
                 value={algorithm}
-                onChange={(e) => setAlgorithm(e.target.value)}
+                onChange={(e) => setAlgorithm(e.target.value as Algorithm)}
                 className="w-full cursor-pointer rounded-2xl border border-white/10 bg-black/40 px-5 py-4 text-white outline-none transition-all hover:border-white/20 focus:border-white/20 focus:ring-1 focus:ring-white/10"
               >
                 <option value="argon2id">Argon2id (Recommended)</option>
-                <option value="pbkdf2">PBKDF2-SHA256</option>
-                <option value="bcrypt">Bcrypt</option>
+                <option value="sha256">SHA256</option>
+                <option value="sha512">SHA512</option>
+                <option value="pbkdf2">PBKDF2</option>
               </select>
             </div>
           </div>
@@ -261,13 +286,20 @@ export default function PasswordGenerator() {
                 <span>Generated Password</span>
                 <span className="flex items-center gap-2 font-mono text-xs text-zinc-600">
                   <span className="h-1.5 w-1.5 rounded-full bg-green-500/50" />
-                  {entropyBits} bits
+                  {entropyBitsState ?? "--"} bits
                 </span>
               </div>
 
               <div className="flex items-center justify-between gap-4">
-                <div className="font-mono text-lg tracking-wide text-white truncate">
-                  {showPassword ? generatedPassword : "•".repeat(generatedPassword.length)}
+                <div className="flex-1 min-w-0">
+                  <div
+                    className="font-mono text-lg tracking-wide text-white whitespace-nowrap overflow-x-auto pr-2 password-scroll"
+                    tabIndex={0}
+                    role="textbox"
+                    aria-readonly
+                  >
+                    {showPassword ? generatedPassword : "•".repeat(generatedPassword.length)}
+                  </div>
                 </div>
 
                 <div className="flex items-center gap-1">
@@ -292,12 +324,12 @@ export default function PasswordGenerator() {
                 <span className="text-xs font-medium text-zinc-500">Strength</span>
                 <div className="flex-1 h-1.5 rounded-full bg-white/10 overflow-hidden">
                   <div
-                    className={`h-full rounded-full transition-all duration-500 ${strength.color}`}
-                    style={{ width: strength.width }}
+                    className={`h-full rounded-full transition-all duration-500 ${(strengthState?.color) ?? "bg-white/10"}`}
+                    style={{ width: (strengthState?.width) ?? "w-0" }}
                   />
                 </div>
-                <span className={`text-xs font-semibold ${strength.text}`}>
-                  {strength.label}
+                <span className={`text-xs font-semibold ${(strengthState?.text) ?? "text-zinc-400"}`}>
+                  {strengthState?.label ?? "--"}
                 </span>
               </div>
             </div>

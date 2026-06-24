@@ -49,3 +49,32 @@ body {
     transparent 80%
   );
 }
+
+/* Themed scrollbar for password display (dark, blue→purple accent) */
+.password-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(124,58,237,0.9) rgba(255,255,255,0.04);
+}
+
+/* WebKit browsers */
+.password-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+.password-scroll::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.03);
+  border-radius: 999px;
+}
+.password-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #60a5fa, #7c3aed);
+  border-radius: 999px;
+  border: 2px solid rgba(10,10,10,0.0);
+}
+.password-scroll:focus {
+  outline: 2px solid rgba(99,102,241,0.15);
+  outline-offset: 2px;
+}
+
+/* Slightly larger thumb on hover */
+.password-scroll::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.05) saturate(1.1);
+}
