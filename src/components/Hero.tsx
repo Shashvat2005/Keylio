@@ -9,7 +9,7 @@ export default function HeroCopy() {
     <section className="relative flex min-h-[calc(100vh-4rem)] items-center overflow-hidden bg-black px-6 py-20">
       {/* Background Glow */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-3xl" />
+        <div className="absolute left-1/2 top-1/2 h-150 w-150 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-3xl" />
       </div>
 
       <div className="mx-auto max-w-6xl">
@@ -25,7 +25,7 @@ export default function HeroCopy() {
 
           <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
             Passwords engineered for the{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               modern threat landscape
             </span>
           </h1>

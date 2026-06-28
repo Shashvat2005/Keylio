@@ -37,6 +37,7 @@ export default function PasswordGenerator() {
   const [generatedPassword, setGeneratedPassword] = useState("");
   const [copied, setCopied] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showPassword1, setShowPassword1] = useState(false);
   // Strength shown after generation
   const [strengthState, setStrengthState] = useState<{ label: string; color: string; text: string; width: string } | null>(null);
   const [entropyBitsState, setEntropyBitsState] = useState<number | null>(null);
@@ -312,16 +313,16 @@ export default function PasswordGenerator() {
                     role="textbox"
                     aria-readonly
                   >
-                    {showPassword ? generatedPassword : "•".repeat(generatedPassword.length)}
+                    {showPassword1 ? generatedPassword : "•".repeat(generatedPassword.length)}
                   </div>
                 </div>
 
                 <div className="flex items-center gap-1">
                   <button
-                    onClick={() => setShowPassword(!showPassword)}
+                    onClick={() => setShowPassword1(!showPassword1)}
                     className="rounded-xl p-2 text-zinc-500 transition hover:bg-white/5 hover:text-white"
                   >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    {showPassword1 ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
                   <button
                     onClick={copyToClipboard}
